@@ -1,0 +1,42 @@
+import { Stripe } from 'stripe';
+
+const stripe = new Stripe('sk_test_51O0KboSCj9d5qikCMOnJr0ynMsKd5sB2Y5L7sMtbBWrqr0DiDPqwnfsj7V87U7yQvtmFKAWTFNn6vHCP17YhzyvQ00uBzlPoVC', {
+    apiVersion: '2020-08-27',
+});
+
+export default async function handler(req, res) {
+    try {
+        if (req.method !== 'POST') {
+            return res.status(405).json({ error: 'Method Not Allowed' });
+        }
+
+        const { email, website, subject, paymentMethod } = req.body;
+
+        // Create a PaymentIntent on the server
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount: 10000, // Amount in cents (100 INR)
+            currency: 'inr',
+            payment_method_types: ['card'], // Specify the payment method type
+            receipt_email: email,
+            metadata: {
+                website,
+                subject,
+                email,
+            },
+            payment_method: paymentMethod, // Pass the payment method from the frontend
+        });
+
+        // Confirm the PaymentIntent
+        const confirmedPaymentIntent = await stripe.paymentIntents.confirm(paymentIntent.id);
+
+        if (confirmedPaymentIntent.status === 'succeeded') {
+            return res.status(200).json({ clientSecret: confirmedPaymentIntent.client_secret });
+        } else {
+            console.error('Payment failed:---', confirmedPaymentIntent);
+            return res.status(500).json({ error: 'Payment failed' });
+        }
+    } catch (error) {
+        console.error('Error creating/payment processing:', error);
+        return res.status(500).json({ error: 'Payment failed' });
+    }
+}
