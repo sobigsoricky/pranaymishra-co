@@ -288,8 +288,9 @@ footer ul li {
   padding: 5rem 0 !important;
 }
 
-.contactBanner {
-  margin-top: 4.8rem;
+.contactBanner,
+#resourceBanner {
+  margin-top: 4.87rem;
   min-height: 100vh;
 }
 
@@ -449,4 +450,103 @@ footer ul li {
 
 #businessIdentity li {
   cursor: pointer;
+}
+
+#resourceBanner h1 {
+  font-size: 4rem !important;
+  font-weight: 600 !important;
+  color: #fff;
+}
+
+#resourceBanner .tagline {
+  font-size: 1.5rem !important;
+  font-weight: 500 !important;
+  margin-top: 1rem;
+}
+
+#resourceBanner .non-g-resource {
+  background-color: #0f0f0f;
+  border-radius: 1.563rem;
+  padding: 3rem;
+  margin-top: 4.75rem;
+}
+
+.resource-card {
+  border-radius: 1rem;
+  height: 100%;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.resource-card .MuiCardContent-root {
+  height: 100%;
+  padding: 2rem;
+}
+
+.resource-card .resource-card-title {
+  font-size: 1.338rem !important;
+  font-weight: 600 !important;
+  margin: 0;
+  padding: 0;
+}
+
+.resource-card img.logo {
+  width: 30%;
+}
+
+#acrossInternet .sectiontitle {
+  font-size: 2.5rem !important;
+  font-weight: 600 !important;
+}
+
+.acrossCard {
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0;
+  margin: 0;
+}
+
+.acrossCard .MuiCardContent-root {
+  padding: 1.5rem !important;
+}
+
+.acrossCard .across-card-title {
+  font-size: 1.25rem !important;
+  color: var(--primary-color) !important;
+  margin-bottom: 1.813rem;
+}
+
+.acrossCard ul {
+  margin-top: 1.5rem;
+}
+
+.acrossCard ul li {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.acrossCard ul li .MuiListItemIcon-root {
+  min-width: 1rem !important;
+}
+
+.acrossCard ul li .MuiListItemText-root {
+  color: #fff !important;
+}
+
+@media only screen and (max-width: 600px) {
+  #resourceBanner h1 {
+    font-size: 2.1rem !important;
+  }
+
+  #resourceBanner .tagline {
+    font-size: 1.1rem !important;
+  }
+
+  #resourceBanner .non-g-resource {
+    margin-top: 2rem;
+    padding: 1rem;
+  }
+
+  #acrossInternet .sectiontitle {
+    font-size: 1.8rem !important;
+  }
 }
